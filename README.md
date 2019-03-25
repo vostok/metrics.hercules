@@ -5,6 +5,7 @@
 
 An implementation of metric event sender based on Hercules client. Also provides mapping from Hercules events back to metrics.
 
+Conversion is performed according to [schema](https://github.com/vostok/hercules/blob/master/doc/event-schema/metric-event-schema.md).
 
 **Build guide**: https://github.com/vostok/devtools/blob/master/library-dev-conventions/how-to-build-a-library.md
 
