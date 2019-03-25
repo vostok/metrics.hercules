@@ -7,9 +7,13 @@ notests *default:
 
   install:
     - Vostok.Metrics.Hercules/bin/Release/netstandard2.0/Vostok.Metrics.Hercules.dll
+    - module vostok.metrics
+    - module vostok.hercules.client.abstractions
 
   deps:
     - vostok.devtools
+    - vostok.metrics
+    - vostok.hercules.client.abstractions
 
 full-build > notests:
   build:
