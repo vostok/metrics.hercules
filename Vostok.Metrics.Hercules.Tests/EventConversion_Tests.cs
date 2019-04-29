@@ -29,7 +29,7 @@ namespace Vostok.Metrics.Hercules.Tests
                 .WhenForAnyArgs(s => s.Put(null, null))
                 .Do(info => info.Arg<Action<IHerculesEventBuilder>>().Invoke(builder));
 
-            settings = new HerculesMetricSenderSettings(sink, Guid.NewGuid().ToString());
+            settings = new HerculesMetricSenderSettings(sink);
 
             sender = new HerculesMetricSender(settings);
         }

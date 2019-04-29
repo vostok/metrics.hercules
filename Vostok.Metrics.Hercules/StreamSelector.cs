@@ -10,14 +10,14 @@
         }
 
         public string SelectStream(string aggregationType)
-            => SelectStreamInternal(aggregationType) ?? settings.DefaultStream;
+            => SelectStreamInternal(aggregationType) ?? settings.FallbackStream;
 
         private string SelectStreamInternal(string aggregationType)
         {
             switch (aggregationType)
             {
                 case null:
-                    return settings.TerminalStream;
+                    return settings.FinalStream;
 
                 case WellKnownAggregationTypes.Counter:
                     return settings.CountersStream;

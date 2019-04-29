@@ -11,11 +11,8 @@ namespace Vostok.Metrics.Hercules
     [PublicAPI]
     public class HerculesMetricSenderSettings
     {
-        public HerculesMetricSenderSettings([NotNull] IHerculesSink sink, [NotNull] string defaultStream)
-        {
-            Sink = sink ?? throw new ArgumentNullException(nameof(sink));
-            DefaultStream = defaultStream ?? throw new ArgumentNullException(nameof(defaultStream));
-        }
+        public HerculesMetricSenderSettings([NotNull] IHerculesSink sink)
+            => Sink = sink ?? throw new ArgumentNullException(nameof(sink));
 
         /// <summary>
         /// Hercules sink used to emit events.
@@ -24,37 +21,37 @@ namespace Vostok.Metrics.Hercules
         public IHerculesSink Sink { get; }
 
         /// <summary>
-        /// Name of the Hercules stream to use by default.
+        /// Name of the Hercules stream to use as a fallback for when there's no configured stream for metric's aggregation type.
         /// </summary>
         [NotNull]
-        public string DefaultStream { get; }
+        public string FallbackStream { get; set; } = "metrics_any";
 
         /// <summary>
         /// <para>Name of the Hercules stream to use for <see cref="MetricEvent"/>s with <c>null</c> aggregation type.</para>
-        /// <para>If left <c>null</c>, <see cref="DefaultStream"/> will be used instead.</para>
+        /// <para>If set to <c>null</c>, <see cref="FallbackStream"/> will be used instead.</para>
         /// </summary>
         [CanBeNull]
-        public string TerminalStream { get; set; }
+        public string FinalStream { get; set; } = "metrics_final";
 
         /// <summary>
         /// <para>Name of the Hercules stream to use for <see cref="MetricEvent"/>s with <see cref="WellKnownAggregationTypes.Counter"/> aggregation type.</para>
-        /// <para>If left <c>null</c>, <see cref="DefaultStream"/> will be used instead.</para>
+        /// <para>If set to <c>null</c>, <see cref="FallbackStream"/> will be used instead.</para>
         /// </summary>
         [CanBeNull]
-        public string CountersStream { get; set; }
+        public string CountersStream { get; set; } = "metrics_counters";
 
         /// <summary>
         /// <para>Name of the Hercules stream to use for <see cref="MetricEvent"/>s with <see cref="WellKnownAggregationTypes.Timer"/> aggregation type.</para>
-        /// <para>If left <c>null</c>, <see cref="DefaultStream"/> will be used instead.</para>
+        /// <para>If set to <c>null</c>, <see cref="FallbackStream"/> will be used instead.</para>
         /// </summary>
         [CanBeNull]
-        public string TimersStream { get; set; }
+        public string TimersStream { get; set; } = "metrics_timers";
 
         /// <summary>
         /// <para>Name of the Hercules stream to use for <see cref="MetricEvent"/>s with <see cref="WellKnownAggregationTypes.Histogram"/> aggregation type.</para>
-        /// <para>If left <c>null</c>, <see cref="DefaultStream"/> will be used instead.</para>
+        /// <para>If set to <c>null</c>, <see cref="FallbackStream"/> will be used instead.</para>
         /// </summary>
         [CanBeNull]
-        public string HistogramsStream { get; set; }
+        public string HistogramsStream { get; set; } = "metrics_histograms";
     }
 }
