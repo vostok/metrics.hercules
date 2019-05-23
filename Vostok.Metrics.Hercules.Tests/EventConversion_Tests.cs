@@ -5,7 +5,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Vostok.Hercules.Client.Abstractions;
 using Vostok.Hercules.Client.Abstractions.Events;
-using Vostok.Metrics.Model;
+using Vostok.Metrics.Models;
 
 // ReSharper disable AssignNullToNotNullAttribute
 

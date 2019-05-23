@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 using Vostok.Hercules.Client.Abstractions;
-using Vostok.Metrics.Model;
+using Vostok.Metrics.Models;
 
 namespace Vostok.Metrics.Hercules
 {

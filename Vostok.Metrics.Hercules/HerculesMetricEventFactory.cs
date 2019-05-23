@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 using Vostok.Hercules.Client.Abstractions.Events;
-using Vostok.Metrics.Model;
+using Vostok.Metrics.Models;
 
 // ReSharper disable PossibleNullReferenceException
 
