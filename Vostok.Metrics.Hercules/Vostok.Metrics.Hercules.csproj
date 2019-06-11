@@ -3,7 +3,10 @@
 
   <Import Project="..\..\vostok.devtools\library-common-props\Main-Project.props" />
   <Import Project="..\..\vostok.devtools\git-commit-to-assembly-title\Vostok.Tools.GitCommit2AssemblyTitle.props" />
-  
+
+  <Import Project="..\..\vostok.commons.binary\BinaryBufferReader.props" />
+  <Import Project="..\..\vostok.commons.binary\BinaryBufferWriter.props" />
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Configurations>Debug;Release</Configurations>
@@ -37,6 +40,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\vostok.hercules.client.abstractions\Vostok.Hercules.Client.Abstractions\bin\Release\netstandard2.0\Vostok.Hercules.Client.Abstractions.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\vostok.commons.time\Vostok.Commons.Time\EpochHelper.cs" Link="Commons\EpochHelper.cs" />
   </ItemGroup>
 
 </Project>
