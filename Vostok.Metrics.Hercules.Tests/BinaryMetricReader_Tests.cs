@@ -23,10 +23,8 @@ namespace Vostok.Metrics.Hercules.Tests
                 Endianness = Endianness.Big
             };
 
-            var coordinates = reader.ReadByteArray(580);
-
-            var eventsReader = new BinaryMetricReader(bytes, reader);
-            var events = reader.ReadArray(_ => eventsReader.ReadEvent());
+            var eventsReader = new MetricEventsBinaryReader();
+            var events = eventsReader.Read(bytes, 580);
 
             log.Info("Responce body parsed in {Elapsed}.", sw.Elapsed);
         }

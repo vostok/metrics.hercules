@@ -1,35 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Vostok.Commons.Binary;
 using Vostok.Commons.Time;
+using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Metrics.Models;
 
 namespace Vostok.Metrics.Hercules
 {
-    internal class BinaryMetricReader
+    [PublicAPI]
+    public class MetricEventsBinaryReader : IHerculesEventsBinaryReader<MetricEvent>
     {
-        private const byte EventProtocolVersion = 1;
+        private const byte ProtocolVersion = 1;
 
-        private readonly byte[] bytes;
-        private readonly IBinaryReader reader;
+        private byte[] bytes;
+        private IBinaryReader reader;
 
-        private readonly Dictionary<ByteArrayKey, MetricTags> tagsCache;
-        private readonly Dictionary<ByteArrayKey, string> stringsCache;
-
-        public BinaryMetricReader(byte[] bytes, IBinaryReader reader)
+        private Dictionary<ByteArrayKey, MetricTags> tagsCache;
+        private Dictionary<ByteArrayKey, string> stringsCache;
+        
+        // ReSharper disable once ParameterHidesMember
+        public IList<MetricEvent> Read(byte[] bytes, int offset)
         {
             this.bytes = bytes;
-            this.reader = reader;
+
+            reader = new BinaryBufferReader(bytes, offset)
+            {
+                Endianness = Endianness.Big
+            };
+
             tagsCache = new Dictionary<ByteArrayKey, MetricTags>();
             stringsCache = new Dictionary<ByteArrayKey, string>();
+
+            return reader.ReadArray(_ => ReadEvent());
         }
 
-        public MetricEvent ReadEvent()
+        private MetricEvent ReadEvent()
         {
-            reader.EnsureBigEndian();
-
             var version = reader.ReadByte();
-            if (version != EventProtocolVersion)
+            if (version != ProtocolVersion)
                 throw new NotSupportedException($"Unsupported Hercules protocol version: {version}");
 
             var utcTimestamp = EpochHelper.FromUnixTimeUtcTicks(reader.ReadInt64());
@@ -52,7 +61,7 @@ namespace Vostok.Metrics.Hercules
 
             for (var i = 0; i < tagsCount; i++)
             {
-                var key =  ReadShortString();
+                var key = ReadShortString();
                 var valueType = (TagType)reader.ReadByte();
 
                 switch (key)
