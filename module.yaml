@@ -15,6 +15,7 @@ notests *default:
     - vostok.metrics
     - vostok.hercules.client.abstractions
     - vostok.commons.binary/src
+    - vostok.commons.collections/src
 
 full-build > notests:
   deps:
