@@ -11,7 +11,7 @@ namespace Vostok.Metrics.Hercules.EventBuilder
     [PublicAPI]
     public class MetricEventBuilder : DummyHerculesTagsBuilder, IHerculesEventBuilder<MetricEvent>
     {
-        private readonly IBinaryBuffer buffer;
+        private readonly IBinaryBufferReader reader;
 
         private double? value;
         private MetricTags tags;
@@ -25,13 +25,13 @@ namespace Vostok.Metrics.Hercules.EventBuilder
 
         private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
 
-        public MetricEventBuilder(IBinaryBuffer buffer)
+        public MetricEventBuilder(IBinaryBufferReader reader)
         {
-            this.buffer = buffer;
+            this.reader = reader;
 
             // Note(kungurtsev): deleting old cache with byte array buffer.
-            tagsCache = MetricEventBuilderCache.TagsCache.Get(buffer);
-            aggregationParametersCache = MetricEventBuilderCache.AggregationParametersCache.Get(buffer);
+            tagsCache = MetricEventBuilderCache.TagsCache.Get(reader);
+            aggregationParametersCache = MetricEventBuilderCache.AggregationParametersCache.Get(reader);
         }
 
         public IHerculesEventBuilder<MetricEvent> SetTimestamp(DateTimeOffset timestamp)
@@ -107,18 +107,18 @@ namespace Vostok.Metrics.Hercules.EventBuilder
 
         private void AddAggregationParameters(Action<IHerculesTagsBuilder> valueBuilder)
         {
-            var startPosition = buffer.Position;
-            buffer.SkipMode = true;
+            var startPosition = reader.Position;
+            reader.SkipMode = true;
             valueBuilder(DummyBuilder);
-            buffer.SkipMode = false;
-            var endPosition = buffer.Position;
+            reader.SkipMode = false;
+            var endPosition = reader.Position;
 
-            var byteKey = new ByteArrayKey(buffer.Buffer, startPosition, endPosition - startPosition);
+            var byteKey = new ByteArrayKey(reader.Buffer, startPosition, endPosition - startPosition);
 
             if (aggregationParametersCache.TryGetValue(byteKey, out aggregationParameters))
                 return;
 
-            buffer.Position = startPosition;
+            reader.Position = startPosition;
 
             var builder = new AggregationParametersBuilder();
             valueBuilder(builder);
@@ -128,21 +128,21 @@ namespace Vostok.Metrics.Hercules.EventBuilder
 
         private void AddTags(IReadOnlyList<Action<IHerculesTagsBuilder>> valueBuilders)
         {
-            var startPosition = buffer.Position;
-            buffer.SkipMode = true;
+            var startPosition = reader.Position;
+            reader.SkipMode = true;
             foreach (var valueBuilder in valueBuilders)
             {
                 valueBuilder(DummyBuilder);
             }
-            buffer.SkipMode = false;
-            var endPosition = buffer.Position;
+            reader.SkipMode = false;
+            var endPosition = reader.Position;
 
-            var byteKey = new ByteArrayKey(buffer.Buffer, startPosition, endPosition - startPosition);
+            var byteKey = new ByteArrayKey(reader.Buffer, startPosition, endPosition - startPosition);
 
             if (tagsCache.TryGetValue(byteKey, out tags))
                 return;
 
-            buffer.Position = startPosition;
+            reader.Position = startPosition;
 
             var list = new MetricTag[valueBuilders.Count];
             var tagBuilder = new TagBuilder();
