@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\vostok.devtools\library-common-props\Main-Project.props" />
@@ -14,7 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionPrefix>0.1.0</VersionPrefix>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -35,7 +36,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\vostok.metrics\Vostok.Metrics\bin\Release\netstandard2.0\Vostok.Metrics.dll</HintPath>
     </Reference>
-    
+
     <Reference Include="Vostok.Hercules.Client.Abstractions">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\vostok.hercules.client.abstractions\Vostok.Hercules.Client.Abstractions\bin\Release\netstandard2.0\Vostok.Hercules.Client.Abstractions.dll</HintPath>
@@ -44,9 +45,12 @@
 
   <ItemGroup>
     <Compile Include="..\..\vostok.commons.binary\Vostok.Commons.Binary\ByteArrayKey.cs" Link="Commons\ByteArrayKey.cs" />
-    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\ByReferenceEqualityComparer.cs" Link="Commons\ByReferenceEqualityComparer.cs" />
-    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\CachingTransform.cs" Link="Commons\CachingTransform.cs" />
-    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\RecyclingBoundedCache.cs" Link="Commons\RecyclingBoundedCache.cs" />
+    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\ByReferenceEqualityComparer.cs"
+             Link="Commons\ByReferenceEqualityComparer.cs" />
+    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\CachingTransform.cs"
+             Link="Commons\CachingTransform.cs" />
+    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\RecyclingBoundedCache.cs"
+             Link="Commons\RecyclingBoundedCache.cs" />
     <Compile Include="..\..\vostok.commons.time\Vostok.Commons.Time\EpochHelper.cs" Link="Commons\EpochHelper.cs" />
   </ItemGroup>
 

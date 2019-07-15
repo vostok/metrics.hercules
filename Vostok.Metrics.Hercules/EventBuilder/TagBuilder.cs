@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
-using Vostok.Hercules.Client.Abstractions.Events;
+﻿using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Metrics.Models;
+
 // ReSharper disable ParameterHidesMember
 
 namespace Vostok.Metrics.Hercules.EventBuilder
@@ -9,7 +9,12 @@ namespace Vostok.Metrics.Hercules.EventBuilder
     {
         private string key;
         private string value;
-        
+
+        public MetricTag Build()
+        {
+            return new MetricTag(key, value);
+        }
+
         IHerculesTagsBuilder IHerculesTagsBuilder.AddValue(string key, string value)
         {
             switch (key)
@@ -23,11 +28,6 @@ namespace Vostok.Metrics.Hercules.EventBuilder
             }
 
             return this;
-        }
-
-        public MetricTag Build()
-        {
-            return new MetricTag(key, value);
         }
     }
 }

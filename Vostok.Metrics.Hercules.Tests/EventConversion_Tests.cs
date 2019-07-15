@@ -23,7 +23,7 @@ namespace Vostok.Metrics.Hercules.Tests
         {
             builder = new HerculesEventBuilder();
 
-            var sink = Substitute.For<IHerculesSink>(); 
+            var sink = Substitute.For<IHerculesSink>();
 
             sink
                 .WhenForAnyArgs(s => s.Put(null, null))
@@ -53,8 +53,13 @@ namespace Vostok.Metrics.Hercules.Tests
                 .Append("k1", "v1")
                 .Append("k2", "v2");
 
-            var metricEvent = new MetricEvent(324.342d, tags, DateTimeOffset.UtcNow, 
-                WellKnownUnits.Milliseconds, WellKnownAggregationTypes.Counter, new Dictionary<string, string>
+            var metricEvent = new MetricEvent(
+                324.342d,
+                tags,
+                DateTimeOffset.UtcNow,
+                WellKnownUnits.Milliseconds,
+                WellKnownAggregationTypes.Counter,
+                new Dictionary<string, string>
                 {
                     ["Param1"] = "value1",
                     ["Param2"] = "value2"
