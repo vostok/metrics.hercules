@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionPrefix>0.1.1</VersionPrefix>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -45,12 +45,9 @@
 
   <ItemGroup>
     <Compile Include="..\..\vostok.commons.binary\Vostok.Commons.Binary\ByteArrayKey.cs" Link="Commons\ByteArrayKey.cs" />
-    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\ByReferenceEqualityComparer.cs"
-             Link="Commons\ByReferenceEqualityComparer.cs" />
-    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\CachingTransform.cs"
-             Link="Commons\CachingTransform.cs" />
-    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\RecyclingBoundedCache.cs"
-             Link="Commons\RecyclingBoundedCache.cs" />
+    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\ByReferenceEqualityComparer.cs" Link="Commons\ByReferenceEqualityComparer.cs" />
+    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\CachingTransform.cs" Link="Commons\CachingTransform.cs" />
+    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\RecyclingBoundedCache.cs" Link="Commons\RecyclingBoundedCache.cs" />
     <Compile Include="..\..\vostok.commons.time\Vostok.Commons.Time\EpochHelper.cs" Link="Commons\EpochHelper.cs" />
   </ItemGroup>
 
