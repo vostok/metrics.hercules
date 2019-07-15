@@ -7,15 +7,15 @@ namespace Vostok.Metrics.Hercules.EventBuilder
     {
         private readonly Dictionary<string, string> parameters = new Dictionary<string, string>();
 
+        public Dictionary<string, string> Build()
+        {
+            return parameters;
+        }
+
         IHerculesTagsBuilder IHerculesTagsBuilder.AddValue(string key, string value)
         {
             parameters[key] = value;
             return this;
-        }
-
-        public Dictionary<string, string> Build()
-        {
-            return parameters;
         }
     }
 }

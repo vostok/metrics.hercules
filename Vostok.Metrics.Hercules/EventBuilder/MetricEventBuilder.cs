@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Vostok.Commons.Binary;
 using Vostok.Hercules.Client.Abstractions.Events;
 using Vostok.Metrics.Models;
+
 // ReSharper disable ParameterHidesMember
 
 namespace Vostok.Metrics.Hercules.EventBuilder
@@ -11,7 +12,11 @@ namespace Vostok.Metrics.Hercules.EventBuilder
     [PublicAPI]
     public class MetricEventBuilder : DummyHerculesTagsBuilder, IHerculesEventBuilder<MetricEvent>
     {
+        private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
+
         private readonly IBinaryBufferReader reader;
+        private readonly Dictionary<ByteArrayKey, MetricTags> tagsCache;
+        private readonly Dictionary<ByteArrayKey, Dictionary<string, string>> aggregationParametersCache;
 
         private double? value;
         private MetricTags tags;
@@ -19,11 +24,6 @@ namespace Vostok.Metrics.Hercules.EventBuilder
         private string unit;
         private string aggregationType;
         private Dictionary<string, string> aggregationParameters;
-
-        private readonly Dictionary<ByteArrayKey, MetricTags> tagsCache;
-        private readonly Dictionary<ByteArrayKey, Dictionary<string, string>> aggregationParametersCache;
-
-        private static readonly DummyHerculesTagsBuilder DummyBuilder = new DummyHerculesTagsBuilder();
 
         public MetricEventBuilder(IBinaryBufferReader reader)
         {
@@ -51,14 +51,6 @@ namespace Vostok.Metrics.Hercules.EventBuilder
                 aggregationParameters);
         }
 
-        IHerculesTagsBuilder IHerculesTagsBuilder.AddValue(string key, double value)
-        {
-            if (key == TagNames.Value)
-                this.value = value;
-
-            return this;
-        }
-
         public new IHerculesTagsBuilder AddValue(string key, string value)
         {
             switch (key)
@@ -70,6 +62,14 @@ namespace Vostok.Metrics.Hercules.EventBuilder
                     aggregationType = value;
                     break;
             }
+
+            return this;
+        }
+
+        IHerculesTagsBuilder IHerculesTagsBuilder.AddValue(string key, double value)
+        {
+            if (key == TagNames.Value)
+                this.value = value;
 
             return this;
         }
@@ -134,6 +134,7 @@ namespace Vostok.Metrics.Hercules.EventBuilder
             {
                 valueBuilder(DummyBuilder);
             }
+
             reader.SkipMode = false;
             var endPosition = reader.Position;
 

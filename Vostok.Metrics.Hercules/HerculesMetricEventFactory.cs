@@ -45,7 +45,7 @@ namespace Vostok.Metrics.Hercules
 
             foreach (var tag in tags)
                 result[tag.Key] = tag.Value.AsString;
-            
+
             return result;
         }
     }

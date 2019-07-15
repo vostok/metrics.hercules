@@ -8,7 +8,7 @@ namespace Vostok.Metrics.Hercules.EventBuilder
 {
     internal static class MetricEventBuilderCache
     {
-        public static readonly CachingTransform<IBinaryBufferReader, Dictionary<ByteArrayKey, MetricTags>> TagsCache 
+        public static readonly CachingTransform<IBinaryBufferReader, Dictionary<ByteArrayKey, MetricTags>> TagsCache
             = new CachingTransform<IBinaryBufferReader, Dictionary<ByteArrayKey, MetricTags>>(
                 _ => new Dictionary<ByteArrayKey, MetricTags>());
 
