@@ -15,7 +15,7 @@ namespace Vostok.Metrics.Hercules.EventBuilder
             return new MetricTag(key, value);
         }
 
-        IHerculesTagsBuilder IHerculesTagsBuilder.AddValue(string key, string value)
+        public new IHerculesTagsBuilder AddValue(string key, string value)
         {
             switch (key)
             {
