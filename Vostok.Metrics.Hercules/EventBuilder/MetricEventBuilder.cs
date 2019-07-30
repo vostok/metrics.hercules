@@ -66,7 +66,7 @@ namespace Vostok.Metrics.Hercules.EventBuilder
             return this;
         }
 
-        IHerculesTagsBuilder IHerculesTagsBuilder.AddValue(string key, double value)
+        public new IHerculesTagsBuilder AddValue(string key, double value)
         {
             if (key == TagNames.Value)
                 this.value = value;
@@ -74,7 +74,7 @@ namespace Vostok.Metrics.Hercules.EventBuilder
             return this;
         }
 
-        IHerculesTagsBuilder IHerculesTagsBuilder.AddContainer(string key, Action<IHerculesTagsBuilder> valueBuilder)
+        public new IHerculesTagsBuilder AddContainer(string key, Action<IHerculesTagsBuilder> valueBuilder)
         {
             if (key == TagNames.AggregationParameters)
             {
@@ -88,7 +88,7 @@ namespace Vostok.Metrics.Hercules.EventBuilder
             return this;
         }
 
-        IHerculesTagsBuilder IHerculesTagsBuilder.AddVectorOfContainers(string key, IReadOnlyList<Action<IHerculesTagsBuilder>> valueBuilders)
+        public new IHerculesTagsBuilder AddVectorOfContainers(string key, IReadOnlyList<Action<IHerculesTagsBuilder>> valueBuilders)
         {
             if (key == TagNames.Tags)
             {
