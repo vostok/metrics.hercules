@@ -22,8 +22,11 @@ namespace Vostok.Metrics.Hercules
         }
 
         public void Send(MetricEvent @event)
-            => settings.Sink.Put(
-                streamSelector.SelectStream(@event.AggregationType),
-                builder => HerculesEventMetricBuilder.Build(@event, builder));
+        {
+            if (settings.Enabled?.Invoke() != false)
+                settings.Sink.Put(
+                    streamSelector.SelectStream(@event.AggregationType),
+                    builder => HerculesEventMetricBuilder.Build(@event, builder));
+        }
     }
 }
