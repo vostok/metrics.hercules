@@ -53,5 +53,11 @@ namespace Vostok.Metrics.Hercules
         /// </summary>
         [CanBeNull]
         public string HistogramsStream { get; set; } = "metrics_histograms";
+
+        /// <summary>
+        /// Whether or not to send metric events to Hercules.
+        /// </summary>
+        [CanBeNull]
+        public Func<bool> Enabled { get; set; }
     }
 }
