@@ -12,7 +12,7 @@ notests *default:
 
   deps:
     - vostok.devtools
-    - vostok.metrics
+    - vostok.metrics@annotations
     - vostok.hercules.client.abstractions
     - vostok.commons.binary/src
     - vostok.commons.collections/src
