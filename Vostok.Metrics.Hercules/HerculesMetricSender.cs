@@ -9,7 +9,7 @@ namespace Vostok.Metrics.Hercules
     /// An implementation of <see cref="IMetricEventSender"/> that saves incoming events as Hercules events using an instance of <see cref="IHerculesSink"/>.
     /// </summary>
     [PublicAPI]
-    public class HerculesMetricSender : IMetricEventSender
+    public class HerculesMetricSender : IMetricEventSender, IAnnotationEventSender
     {
         private readonly HerculesMetricSenderSettings settings;
         private readonly StreamSelector streamSelector;
@@ -27,6 +27,12 @@ namespace Vostok.Metrics.Hercules
                 settings.Sink.Put(
                     streamSelector.SelectStream(@event.AggregationType),
                     builder => HerculesEventMetricBuilder.Build(@event, builder));
+        }
+
+        public void Send(AnnotationEvent @event)
+        {
+            if (settings.Enabled?.Invoke() != false)
+                settings.Sink.Put(settings.AnnotationsStream, builder => HerculesEventAnnotationBuilder.Build(@event, builder));
         }
     }
 }
