@@ -20,8 +20,9 @@ namespace Vostok.Metrics.Hercules
         public static void Build([NotNull] AnnotationEvent @event, [NotNull] IHerculesEventBuilder builder)
         {
             builder.SetTimestamp(@event.Timestamp);
+
             builder.AddValue(TagNames.Description, @event.Description ?? "no description");
-            builder.AddValue(TagNames.TagsHash, @event.Tags.GetHashCode());
+            
             builder.AddVectorOfContainers(
                 TagNames.Tags,
                 @event.Tags,
