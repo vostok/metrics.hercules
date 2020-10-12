@@ -11,16 +11,17 @@ notests *default:
     - module vostok.hercules.client.abstractions
 
   deps:
-    - vostok.devtools
-    - vostok.metrics
-    - vostok.hercules.client.abstractions
     - vostok.commons.binary/src
     - vostok.commons.collections/src
+    - vostok.devtools
+    - vostok.hercules.client.abstractions
+    - vostok.metrics
 
 full-build > notests:
   deps:
     - vostok.logging.console
     - vostok.logging.abstractions
+  
   build:
     target: Vostok.Metrics.Hercules.sln
     configuration: Release

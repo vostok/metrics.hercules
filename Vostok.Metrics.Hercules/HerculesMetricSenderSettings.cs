@@ -55,6 +55,12 @@ namespace Vostok.Metrics.Hercules
         public string HistogramsStream { get; set; } = "metrics_histograms";
 
         /// <summary>
+        /// Name of the Hercules stream to use for <see cref="AnnotationEvent"/>s.
+        /// </summary>
+        [NotNull]
+        public string AnnotationsStream { get; set; } = "annotations";
+
+        /// <summary>
         /// Whether or not to send metric events to Hercules.
         /// </summary>
         [CanBeNull]
