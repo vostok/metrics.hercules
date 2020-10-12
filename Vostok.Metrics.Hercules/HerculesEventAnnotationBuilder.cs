@@ -21,7 +21,7 @@ namespace Vostok.Metrics.Hercules
         {
             builder.SetTimestamp(@event.Timestamp);
 
-            builder.AddValue(TagNames.Description, @event.Description ?? "no description");
+            builder.AddValue(TagNames.Description, @event.Description);
             
             builder.AddVectorOfContainers(
                 TagNames.Tags,
