@@ -11,11 +11,11 @@ notests *default:
     - module vostok.hercules.client.abstractions
 
   deps:
-    - vostok.devtools
-    - vostok.metrics@annotations
-    - vostok.hercules.client.abstractions
     - vostok.commons.binary/src
     - vostok.commons.collections/src
+    - vostok.devtools
+    - vostok.hercules.client.abstractions
+    - vostok.metrics
 
 full-build > notests:
   deps:
