@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Vostok.Hercules.Client.Abstractions.Events;
 
-namespace Vostok.Metrics.Hercules.EventBuilder
+namespace Vostok.Metrics.Hercules.Readers
 {
-    internal class AggregationParametersBuilder : DummyHerculesTagsBuilder, IHerculesTagsBuilder
+    internal class HerculesMetricAggregationParametersReader : DummyHerculesTagsBuilder, IHerculesTagsBuilder
     {
         private readonly Dictionary<string, string> parameters = new Dictionary<string, string>();
 

@@ -3,9 +3,9 @@ using Vostok.Metrics.Models;
 
 // ReSharper disable ParameterHidesMember
 
-namespace Vostok.Metrics.Hercules.EventBuilder
+namespace Vostok.Metrics.Hercules.Readers
 {
-    internal class TagBuilder : DummyHerculesTagsBuilder, IHerculesTagsBuilder
+    internal class HerculesMetricTagReader : DummyHerculesTagsBuilder, IHerculesTagsBuilder
     {
         private string key;
         private string value;
