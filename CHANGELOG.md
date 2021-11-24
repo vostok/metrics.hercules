@@ -1,3 +1,7 @@
+## 0.1.3 (24-11-2021):
+
+Readers moved to separate folder.
+
 ## 0.1.2 (12-10-2020):
 
 Added support for annotation events.
