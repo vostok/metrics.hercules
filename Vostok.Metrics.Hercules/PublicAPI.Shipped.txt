@@ -1,0 +1,39 @@
+static Vostok.Metrics.Hercules.HerculesEventAnnotationBuilder.Build(Vostok.Metrics.Models.AnnotationEvent event) -> Vostok.Hercules.Client.Abstractions.Events.HerculesEvent
+static Vostok.Metrics.Hercules.HerculesEventAnnotationBuilder.Build(Vostok.Metrics.Models.AnnotationEvent event, Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder builder) -> void
+static Vostok.Metrics.Hercules.HerculesEventMetricBuilder.Build(Vostok.Metrics.Models.MetricEvent event) -> Vostok.Hercules.Client.Abstractions.Events.HerculesEvent
+static Vostok.Metrics.Hercules.HerculesEventMetricBuilder.Build(Vostok.Metrics.Models.MetricEvent event, Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder builder) -> void
+static Vostok.Metrics.Hercules.HerculesMetricEventFactory.CreateFrom(Vostok.Hercules.Client.Abstractions.Events.HerculesEvent event) -> Vostok.Metrics.Models.MetricEvent
+Vostok.Metrics.Hercules.HerculesEventAnnotationBuilder
+Vostok.Metrics.Hercules.HerculesEventAnnotationBuilder.HerculesEventAnnotationBuilder() -> void
+Vostok.Metrics.Hercules.HerculesEventMetricBuilder
+Vostok.Metrics.Hercules.HerculesEventMetricBuilder.HerculesEventMetricBuilder() -> void
+Vostok.Metrics.Hercules.HerculesMetricEventFactory
+Vostok.Metrics.Hercules.HerculesMetricSender
+Vostok.Metrics.Hercules.HerculesMetricSender.HerculesMetricSender(Vostok.Metrics.Hercules.HerculesMetricSenderSettings settings) -> void
+Vostok.Metrics.Hercules.HerculesMetricSender.Send(Vostok.Metrics.Models.AnnotationEvent event) -> void
+Vostok.Metrics.Hercules.HerculesMetricSender.Send(Vostok.Metrics.Models.MetricEvent event) -> void
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.AnnotationsStream.get -> string
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.AnnotationsStream.set -> void
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.CountersStream.get -> string
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.CountersStream.set -> void
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.Enabled.get -> System.Func<bool>
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.Enabled.set -> void
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.FallbackStream.get -> string
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.FallbackStream.set -> void
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.FinalStream.get -> string
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.FinalStream.set -> void
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.HerculesMetricSenderSettings(Vostok.Hercules.Client.Abstractions.IHerculesSink sink) -> void
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.HistogramsStream.get -> string
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.HistogramsStream.set -> void
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.Sink.get -> Vostok.Hercules.Client.Abstractions.IHerculesSink
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.TimersStream.get -> string
+Vostok.Metrics.Hercules.HerculesMetricSenderSettings.TimersStream.set -> void
+Vostok.Metrics.Hercules.Readers.HerculesMetricEventReader
+Vostok.Metrics.Hercules.Readers.HerculesMetricEventReader.AddContainer(string key, System.Action<Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder> valueBuilder) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder
+Vostok.Metrics.Hercules.Readers.HerculesMetricEventReader.AddValue(string key, double value) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder
+Vostok.Metrics.Hercules.Readers.HerculesMetricEventReader.AddValue(string key, string value) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder
+Vostok.Metrics.Hercules.Readers.HerculesMetricEventReader.AddVectorOfContainers(string key, System.Collections.Generic.IReadOnlyList<System.Action<Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder>> valueBuilders) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesTagsBuilder
+Vostok.Metrics.Hercules.Readers.HerculesMetricEventReader.BuildEvent() -> Vostok.Metrics.Models.MetricEvent
+Vostok.Metrics.Hercules.Readers.HerculesMetricEventReader.HerculesMetricEventReader(Vostok.Hercules.Client.Abstractions.Events.IBinaryBufferReader reader) -> void
+Vostok.Metrics.Hercules.Readers.HerculesMetricEventReader.SetTimestamp(System.DateTimeOffset timestamp) -> Vostok.Hercules.Client.Abstractions.Events.IHerculesEventBuilder<Vostok.Metrics.Models.MetricEvent>
