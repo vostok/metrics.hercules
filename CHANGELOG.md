@@ -1,3 +1,7 @@
+## 0.1.6 (25-10-2024):
+
+Rebuild nuget package to use new version of Hercules.Client.Abstractions
+
 ## 0.1.5 (06-12-2021):
 
 Added `net6.0` target.
