@@ -9,6 +9,25 @@ notests *default:
     - Vostok.Metrics.Hercules/bin/Release/netstandard2.0/Vostok.Metrics.Hercules.dll
     - module vostok.metrics
     - module vostok.hercules.client.abstractions
+    - groups:
+        - target-framework: "netstandard2.0"
+          libraries:
+            - Vostok.Metrics.Hercules/bin/Release/netstandard2.0/Vostok.Metrics.Hercules.dll
+          modules:
+            - name: vostok.metrics
+            - name: vostok.hercules.client.abstractions
+        - target-framework: "net6.0"
+          libraries:
+            - Vostok.Metrics.Hercules/bin/Release/net6.0/Vostok.Metrics.Hercules.dll
+          modules:
+            - name: vostok.metrics
+            - name: vostok.hercules.client.abstractions
+        - target-framework: "net8.0"
+          libraries:
+            - Vostok.Metrics.Hercules/bin/Release/net8.0/Vostok.Metrics.Hercules.dll
+          modules:
+            - name: vostok.metrics
+            - name: vostok.hercules.client.abstractions
 
   deps:
     - vostok.commons.binary/src
@@ -23,7 +42,7 @@ full-build > notests:
     - vostok.devtools@with-net6.0
     - vostok.logging.console
     - vostok.logging.abstractions
-  
+
   build:
     target: Vostok.Metrics.Hercules.sln
     configuration: Release
